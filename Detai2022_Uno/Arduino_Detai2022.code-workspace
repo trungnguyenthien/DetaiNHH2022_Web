@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Desktop/Arduino_Detai2022"
+		},
+		{
+			"name": "Detai2022",
+			"path": "../Detai2022"
+		},
+		{
+			"path": "../Detai2022/lib"
+		},
+		{
+			"name": "Detai2022_Uno",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"machled7doan": "cpp"
+		}
+	}
+}
