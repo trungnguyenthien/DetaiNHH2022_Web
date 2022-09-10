@@ -1,0 +1,27 @@
+{
+    "remotePath": "./home/tsrqcmjv/public_html/",
+    "host": "ftp.dauden.cloud",
+    "username": "tsrqcmjv",
+    "password": "s658afcIZ3",
+    "port": 21,
+    "secure": false,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}
