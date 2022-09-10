@@ -17,7 +17,25 @@
 	],
 	"settings": {
 		"files.associations": {
-			"machled7doan": "cpp"
+			"machled7doan": "cpp",
+			"__bit_reference": "cpp",
+			"__hash_table": "cpp",
+			"__split_buffer": "cpp",
+			"__tree": "cpp",
+			"array": "cpp",
+			"deque": "cpp",
+			"initializer_list": "cpp",
+			"list": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"iterator": "cpp",
+			"iosfwd": "cpp",
+			"memory": "cpp",
+			"utility": "cpp"
 		}
 	}
 }

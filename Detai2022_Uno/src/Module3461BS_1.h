@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 /// refer: https://github.com/magiccow/_7seg-display-simple/blob/master/_7seg-display-simple.ino
+/// Module: https://i.ebayimg.com/images/g/HwkAAOSwCOJh-9gC/s-l500.jpg
 class Module3461BS_1
 {
 public:
