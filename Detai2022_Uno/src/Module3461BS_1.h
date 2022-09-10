@@ -5,9 +5,9 @@
 class Module3461BS_1
 {
 public:
-  /// @brief  
+  /// @brief
   /// @param DS = DIO PIN
-  /// @param SH_CP = SCLK PIN 
+  /// @param SH_CP = SCLK PIN
   /// @param ST_CP = RCLK PIN
   Module3461BS_1(unsigned int DS, unsigned int SH_CP, unsigned int ST_CP)
   {
@@ -33,8 +33,8 @@ public:
   {
     for (unsigned int i = 0; i < 4; i++)
     {
-      setDigit(i, number % 10, false); // display righmost 4 bits (1 digit)
-      number = number / 10;            // roll on to the next digit
+      setDigit(i, number % 10, false);
+      number = number / 10;
       delay(1);
     }
   }

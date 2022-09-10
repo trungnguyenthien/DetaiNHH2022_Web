@@ -26,7 +26,7 @@ public:
         Serial.printf_P(PSTR("\n%lu: Connected. My IP: %s\r\n"), millis(), WiFi.localIP().toString().c_str());
     }
 
-    String httpGet(const char *host, const char *path)
+    String get(bool isHttps, const char *host, const char *path)
     {
         if (WiFiMulti.run() != WL_CONNECTED)
         {
@@ -36,58 +36,16 @@ public:
         }
 
         WiFiClient client;
-        // WiFiClient client;
         HTTPClient http;
         String payload = "--";
 
-        char serverName[512];
-        strcpy(serverName, host);
-        strcat(serverName, path);
-
-        // Your IP address with path or Domain name with URL path
-        if (http.begin(client, serverName))
+        if (isHttps)
         {
-            Serial.println("Start Request ....");
-            Serial.println(serverName);
-            int httpResponseCode = http.GET();
-
-            if (httpResponseCode > 0)
-            {
-                Serial.print("HTTP Response code: ");
-                Serial.println(httpResponseCode);
-                payload = http.getString();
-            }
-            else
-            {
-                Serial.printf("[HTTPS] GET... failed, error: %s\n", http.errorToString(httpResponseCode).c_str());
-                payload = "--";
-            }
-
-            Serial.print("HTTP Response payload: ");
-            Serial.println(payload);
-            // Free resources
-            http.end();
+            WiFiClientSecure clientX;
+            clientX.setInsecure();
+            clientX.connect(host, 443);
+            client = clientX;
         }
-
-        return payload;
-    }
-
-    String httpsGet(const char *host, const char *path)
-    {
-        if (WiFiMulti.run() != WL_CONNECTED)
-        {
-            Serial.println("WiFiMulti.run() != WL_CONNECTED");
-            Serial.println("WiFi Disconnected");
-            return "--";
-        }
-
-        WiFiClientSecure client;
-        client.setInsecure(); // the magic line, use with caution
-        client.connect(host, 443);
-
-        // WiFiClient client;
-        HTTPClient http;
-        String payload = "--";
 
         char serverName[512];
         strcpy(serverName, host);
