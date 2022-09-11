@@ -2,16 +2,17 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESP8266WiFiMulti.h>
+#include <String>
 
 /// Refer: https://randomnerdtutorials.com/esp8266-nodemcu-client-server-wi-fi/
 class Esp8266_HTTPS
 {
 public:
-    void setup(char *ssid, char *password)
+    void setup(String ssid, String password)
     {
         Serial.print("Connecting to ");
 
-        WiFi.begin(ssid, password);
+        WiFi.begin(ssid.c_str(), password.c_str());
         // Connect to the wifi
         WiFi.mode(WIFI_STA);
         // WiFiMulti.addAP(ssid, password);
