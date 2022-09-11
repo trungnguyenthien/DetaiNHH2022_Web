@@ -26,7 +26,7 @@ public:
         Serial.printf_P(PSTR("\n%lu: Connected. My IP: %s\r\n"), millis(), WiFi.localIP().toString().c_str());
     }
 
-    String get(bool isHttps, const char *host, const char *path)
+    String get(bool isHttps, String host, String path)
     {
         if (WiFiMulti.run() != WL_CONNECTED)
         {
@@ -72,15 +72,15 @@ public:
 private:
     ESP8266WiFiMulti WiFiMulti;
 
-    String makeEndpoint(const char *host, const char *path)
+    String makeEndpoint(String host, String path)
     {
         char *output = new char[9999];
-        strcpy(output, host);
-        strcat(output, path);
+        strcpy(output, host.c_str());
+        strcat(output, path.c_str());
         return output;
     }
 
-    WiFiClient makeClient(bool isSecure, const char *host)
+    WiFiClient makeClient(bool isSecure, String host)
     {
         if (isSecure)
         {
