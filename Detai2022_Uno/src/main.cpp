@@ -30,4 +30,6 @@ void loop()
 
   led.displayNumber(number(true));
   client.get(false, "http://dauden.cloud", pathToPostCurrentNum());
+
+  delay(3000);
 }

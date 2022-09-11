@@ -10,17 +10,16 @@ class Esp8266_HTTPS
 public:
     void setup(String ssid, String password)
     {
-        Serial.print("Connecting to ");
-
-        WiFi.begin(ssid.c_str(), password.c_str());
+        Serial.print("Connecting to: (WIFI) ");
+        Serial.println(ssid);
         // Connect to the wifi
+        WiFi.begin(ssid.c_str(), password.c_str());
         WiFi.mode(WIFI_STA);
-        // WiFiMulti.addAP(ssid, password);
 
         while (WiFi.status() != WL_CONNECTED)
         {
             Serial.print(".");
-            delay(500);
+            delay(200);
         }
 
         Serial.println("");
@@ -36,27 +35,17 @@ public:
             return "--";
         }
 
-        WiFiClient client;
+        WiFiClient client = makeClient(isHttps, host);
         HTTPClient http;
         String payload = "--";
 
-        if (isHttps)
-        {
-            WiFiClientSecure clientX;
-            clientX.setInsecure();
-            clientX.connect(host, 443);
-            client = clientX;
-        }
-
-        char serverName[512];
-        strcpy(serverName, host);
-        strcat(serverName, path);
+        String endpoint = makeEndpoint(host, path);
 
         // Your IP address with path or Domain name with URL path
-        if (http.begin(client, serverName))
+        if (http.begin(client, endpoint))
         {
             Serial.println("Start Request ....");
-            Serial.println(serverName);
+            Serial.println(endpoint);
             int httpResponseCode = http.GET();
 
             if (httpResponseCode > 0)
@@ -82,4 +71,28 @@ public:
 
 private:
     ESP8266WiFiMulti WiFiMulti;
+
+    String makeEndpoint(const char *host, const char *path)
+    {
+        char *output = new char[9999];
+        strcpy(output, host);
+        strcat(output, path);
+        return output;
+    }
+
+    WiFiClient makeClient(bool isSecure, const char *host)
+    {
+        if (isSecure)
+        {
+            WiFiClientSecure clientX;
+            clientX.setInsecure();
+            clientX.connect(host, 443);
+            return clientX;
+        }
+        else
+        {
+            WiFiClient client;
+            return client;
+        }
+    }
 };
