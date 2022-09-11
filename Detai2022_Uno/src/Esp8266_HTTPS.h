@@ -39,7 +39,7 @@ public:
         HTTPClient http;
         String payload = "--";
 
-        String endpoint = makeEndpoint(host, path);
+        String endpoint = host + path;
 
         // Your IP address with path or Domain name with URL path
         if (http.begin(client, endpoint))
@@ -71,14 +71,6 @@ public:
 
 private:
     ESP8266WiFiMulti WiFiMulti;
-
-    String makeEndpoint(String host, String path)
-    {
-        char *output = new char[9999];
-        strcpy(output, host.c_str());
-        strcat(output, path.c_str());
-        return output;
-    }
 
     WiFiClient makeClient(bool isSecure, String host)
     {

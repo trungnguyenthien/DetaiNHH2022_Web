@@ -6,11 +6,10 @@
 Esp8266_HTTPS client = Esp8266_HTTPS();
 Module3461BS_1 led = Module3461BS_1(D2, D3, D4);
 
-char *pathToPostCurrentNum()
+String pathToPostCurrentNum()
 {
-  char *path = new char[500];
-  snprintf(path, 500, "/number/post.php?number=%d", number());
-  return path;
+  String path = "/number/post.php?number=";
+  return path + number();
 }
 
 void setup()
@@ -28,8 +27,8 @@ void loop()
     return;
   }
 
-  led.displayNumber(number(true));
-  client.get(false, "http://dauden.cloud", pathToPostCurrentNum());
+  led.displayNumber(number(true)); 
 
-  delay(3000);
+  String path = pathToPostCurrentNum();
+  client.get(false, "http://dauden.cloud", path);
 }
