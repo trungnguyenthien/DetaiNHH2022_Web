@@ -23,7 +23,7 @@ bool skip()
 
 int number(bool next = false)
 {
-    static int currentNum = random(100, 130);
+    static int currentNum = 100;
     if (next)
         currentNum++;
     return currentNum;
