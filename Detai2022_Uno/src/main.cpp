@@ -16,7 +16,7 @@ void setup()
 {
   Serial.begin(115200);
   led.setup();
-  client.setup("NTRUNG.A71", "77889900");
+  client.setup("TrungThao3", "rongcon1988");
   // client.setup("HAI TEE COFFEE (Free)", "");
 }
 
